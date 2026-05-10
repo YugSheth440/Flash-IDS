@@ -1,50 +1,282 @@
-# FLASH 
+# FLASH IDS — Provenance Graph Based Intrusion Detection System
 
-Welcome to the FLASH repository. Here, we offer the implementation details of the method introduced in our research paper titled "_FLASH: A Comprehensive Approach to Intrusion Detection via Provenance Graph Representation Learning_". Our paper can be found at this [Link](https://www.computer.org/csdl/proceedings-article/sp/2024/313000a139/1Ub23WQw20U).
+## Overview
 
-## Prerequisites
-To run Flash you need to install Jupyter Notebook. More detailed instructions on installing and running Jupyter Notebooks can be found at this [Link](https://jupyter.org/install).
+This project is based on the research paper:
 
-## Installation
-We have provided a requirements.txt file detailing the specific dependency versions. Use the following command to install the required libraries.
-```bash
-pip install -r requirements.txt
+**FLASH: A Comprehensive Approach to Intrusion Detection via Provenance Graph Representation Learning**
+
+FLASH IDS is a graph-based intrusion detection system designed to detect stealthy cyber attacks such as:
+- Advanced Persistent Threats (APT)
+- PowerShell Empire Attacks
+- Data Exfiltration Attacks
+- Zero-Day Attacks
+- Mimicry Attacks
+
+Unlike traditional IDS systems that rely on signatures and static rules, FLASH uses:
+- Provenance Graphs
+- Word2Vec Semantic Encoding
+- Temporal Encoding
+- Graph Neural Networks (GraphSAGE)
+- Embedding Recycling
+- XGBoost Classification
+
+to perform scalable and real-time intrusion detection.
+
+---
+
+# Objective
+
+The objective of this project was:
+- To understand the working of FLASH IDS
+- To execute and analyze the research implementation
+- To study provenance graph based intrusion detection
+- To reproduce experimental outputs and graphs
+- To evaluate attack detection and scalability
+
+---
+
+# Novelty Work
+
+The following additional work was performed during the project:
+
+- Divided large datasets into smaller chunks for efficient streaming analysis
+- Created custom evaluation graphs and comparison plots
+- Performed threshold sensitivity analysis for anomaly detection
+- Simulated real-time streaming detection using batch event processing
+
+---
+
+# Datasets Used
+
+The following datasets were used:
+
+| Dataset | Purpose |
+|---|---|
+| DARPA OpTC | Enterprise attack detection |
+| DARPA E3 | Provenance graph evaluation |
+| StreamSpot | Streaming graph anomaly detection |
+| Unicorn | IDS comparison |
+
+---
+
+# Project Workflow
+
+```text
+System Logs
+    ↓
+Provenance Graph Construction
+    ↓
+Word2Vec Semantic Encoding
+    ↓
+Temporal Encoding
+    ↓
+Graph Neural Network (GraphSAGE)
+    ↓
+Embedding Recycling Database
+    ↓
+XGBoost Classifier
+    ↓
+Attack Detection & Alerts
 ```
 
-## Datasets
-Flash is evaluated on open-source datasets from Darpa and the research community. You can access these datasets using the following links.
+---
 
-### Darpa OpTC
-```bash
-https://github.com/FiveDirections/OpTC-data
+# How FLASH IDS Works
+
+## 1. Log Collection
+
+FLASH collects:
+- Windows Event Logs
+- Linux Audit Logs
+- File activities
+- Process executions
+- Network connections
+
+---
+
+## 2. Provenance Graph Construction
+
+System activities are converted into provenance graphs.
+
+### Nodes
+- Processes
+- Files
+- Sockets
+- Modules
+
+### Edges
+- Read
+- Write
+- Execute
+- Send
+- Receive
+
+Example:
+
+```text
+Outlook.exe
+    ↓
+PowerShell.exe
+    ↓
+Sensitive Files
 ```
 
-### Darpa E3
-```bash
-https://drive.google.com/drive/folders/1fOCY3ERsEmXmvDekG-LUUSjfWs6TRdp
+---
+
+## 3. Semantic Encoding
+
+FLASH uses Word2Vec to generate semantic embeddings from:
+- process names,
+- command line arguments,
+- file paths,
+- IP addresses.
+
+This helps FLASH understand suspicious behavior patterns.
+
+---
+
+## 4. Temporal Encoding
+
+FLASH preserves event order using positional encoding.
+
+Example:
+
+```text
+download
+→ execute
+→ compress
+→ exfiltrate
 ```
 
-### Streamspot
-```bash
-https://github.com/sbustreamspot/sbustreamspot-data
+This sequence strongly indicates malicious behavior.
+
+---
+
+## 5. Graph Neural Network (GraphSAGE)
+
+FLASH uses GraphSAGE to learn:
+- node relationships,
+- graph structures,
+- neighborhood behavior.
+
+This helps identify stealthy malicious nodes.
+
+---
+
+## 6. Embedding Recycling
+
+Previously generated embeddings are stored and reused.
+
+Benefits:
+- reduced computation,
+- faster inference,
+- real-time scalability.
+
+---
+
+## 7. XGBoost Classification
+
+FLASH combines:
+- semantic embeddings,
+- temporal information,
+- graph embeddings.
+
+XGBoost classifies nodes as:
+- normal,
+- malicious.
+
+---
+
+# Attack Detection Flow
+
+Typical attack flow detected by FLASH:
+
+```text
+Phishing Email
+    ↓
+PowerShell Execution
+    ↓
+Sensitive File Access
+    ↓
+Data Compression
+    ↓
+Data Exfiltration
 ```
 
-### Unicorn
-```bash
-https://github.com/margoseltzer/shellshock-apt
-```
-## Code Structure
-The parsers for each dataset are integrated within their respective Jupyter Notebooks. For every dataset, there is a dedicated Notebook designed for evaluation. These Notebooks handle the downloading, parsing, and executing evaluations on their respective datasets. We have provided pre-trained model weights to run evaluations. Each notebook has parameters to control different components of the system. More detailed instructions are given in the Notebooks. After running these Notebooks, the results will be displayed at the end of each execution.
+FLASH analyzes:
+- relationships,
+- execution order,
+- semantic meaning,
+- graph structure
 
-## Contributing
-We welcome all feedback and contributions. If you wish to file a bug or enhancement proposal or have other questions, please use the Github Issue. If you'd like to contribute code, please open a Pull Request.
+to detect attacks effectively.
 
-## BibTeX
-```
-@inproceedings{flash2024,
-  title = {FLASH: A Comprehensive Approach to Intrusion Detection via Provenance Graph Representation Learning},
-  author = {Rehman, Mati Ur and Ahmadi, Hadi and Hassan, Wajih Ul},
-  booktitle = {IEEE Symposium on Security and Privacy (S\&P)},
-  year = {2024},
-}
-```
+---
+
+# Notebooks Executed
+
+The following notebooks were executed and analyzed:
+
+- `OpTC.ipynb`
+- `streamspot.ipynb`
+- `unicorn.ipynb`
+- `Cadets.ipynb`
+- `Theia.ipynb`
+- `Trace.ipynb`
+- `FiveDirections.ipynb`
+
+---
+
+# Graphs and Outputs Generated
+
+Generated outputs include:
+- Precision/Recall/F-score graphs
+- Runtime comparison graphs
+- FLASH vs Unicorn comparison tables
+- Streaming detection analysis
+- Scalability evaluation plots
+
+---
+
+# Technologies Used
+
+- Python
+- PyTorch
+- Torch Geometric
+- Gensim
+- XGBoost
+- NumPy
+- Pandas
+- Matplotlib
+- Jupyter Notebook
+
+---
+
+# Advantages of FLASH IDS
+
+| Feature | FLASH IDS |
+|---|---|
+| Semantic Understanding | Yes |
+| Temporal Encoding | Yes |
+| Graph Learning | Yes |
+| Real-Time Detection | Yes |
+| Low False Positives | Yes |
+| Scalable Architecture | Yes |
+
+---
+
+# Conclusion
+
+FLASH IDS provides a scalable and intelligent intrusion detection framework using provenance graph representation learning.
+
+By combining:
+- semantic analysis,
+- temporal encoding,
+- graph neural networks,
+- embedding recycling,
+
+FLASH achieves:
+- high detection accuracy,
+- real-time scalability,
+- effective detection of stealthy cyber attacks.
